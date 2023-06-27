@@ -3,12 +3,10 @@ package dz1;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import java.util.Random;
 
 import dz1.t1;
+import dz1.t2;
 
 class exceptions1{
     
@@ -33,9 +31,9 @@ class exceptions1{
                     case "2":
                         System.out.println("t2");
                         try {
-                            Integer[] a = t2.declareArray();
-                            Integer[] b =  t2.declareArray();
-                            Integer[] c = t2._t2(a,b);
+                            Integer[] a = dz1.t2.declareArray();
+                            Integer[] b =  dz1.t2.declareArray();
+                            Integer[] c = dz1.t2._t2(a,b);
                             
                         for (int i = 0; i < c.length; i++) {
                             System.out.printf(c[i] + " ");
@@ -47,7 +45,20 @@ class exceptions1{
                         }
                         break;
                     case "3":
-                        System.out.println("t3");
+                        try{
+                            Integer[] a = dz1.t2.declareArray();
+                            Integer[] b =  dz1.t2.declareArray();
+                            String[] c = dz1.t3._t3(a, b);
+                            for (int i = 0; i < c.length; i++) 
+                            {
+                                System.out.printf(c[i] + " ");
+                            }
+                            System.out.println();
+                        }
+                        catch (UnsupportedOperationException | ArithmeticException e)
+                        {
+                            System.out.println(e.getLocalizedMessage());
+                        };
                         break;
                 default:
                     System.out.println("Спасибо за внимание :)");
