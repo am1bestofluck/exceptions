@@ -20,7 +20,8 @@ class gui{
         switch (code) {
             
             case 0:
-                out = "t1";
+                t1 builder = new t1();
+                out = builder._t1(input.getText());
                 break;
             case 1:
                 out = "t2";
