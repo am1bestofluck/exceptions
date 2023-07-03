@@ -34,6 +34,8 @@ public class core {
         core a = new core();
         String[] validString = core.repl();
         System.out.println(validString);
+        json_editor jse = new json_editor(validString);
+        jse.roll();
    }
 
    public static String[] repl(){
@@ -42,6 +44,7 @@ public class core {
         String noDigits ="\\D+";
         String temp = new String();
         String[] subStrings = new String[4];
+        
         
         while (true){
             System.out.println("Введи пож 'Фамилию' 'Имя' 'Отчество' 'Номер телефона' через пробелы");
