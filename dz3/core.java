@@ -1,8 +1,15 @@
 package dz3;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import dz3.exceptions.InputParseException;
 import dz3.exceptions.InputStructureException;
+
+
+import org.json.simple.JSONObject; // https://stackoverflow.com/questions/50232557/visual-studio-code-java-extension-how-to-add-a-jar-to-classpath
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  * 1. юзер запускает программу двойным кликом.()
  * 2. внутри core запускается repl
@@ -17,37 +24,56 @@ import dz3.exceptions.InputStructureException;
  * 
  * 4.   делаем из строки json
  *
- * 5.   отдаём json в zip-editor
+ * 5.   отдаём json в zip-editor # не отдаём ничего никуда. Впереди ад "контейнеризации", нужно 
+ * с этим быстренько разобраться. 
  */
 
 public class core {
 
    public static void main(String[] args) {
         core a = new core();
-        String validString = core.repl();
+        String[] validString = core.repl();
+        System.out.println(validString);
    }
 
-   public static String repl(){
+   public static String[] repl(){
         Scanner localScanner = new Scanner(System.in);
+        String onlyDigits= "\\d+";
+        String noDigits ="\\D+";
         String temp = new String();
         String[] subStrings = new String[4];
         
         while (true){
+            System.out.println("Введи пож 'Фамилию' 'Имя' 'Отчество' 'Номер телефона' через пробелы");
             try {
                 temp = localScanner.nextLine();
                 subStrings = temp.split(" ");
                 if (subStrings.length != 4){
                     throw new InputStructureException("через пробел <Ф> <И> <О> <телефон>"); 
                 }
-                if (subStrings[0].contains(subSequence(0,65)) {
-                    
-                }))
-                return temp;
+                if (!subStrings[0].matches(noDigits)){
+                    throw new InputParseException("некорректный формат ФАМИЛИИ");
+                }
+                if (!subStrings[1].matches(noDigits)){
+                    throw new InputParseException("некорректный формат ИМЕНИ");
+                }
+                if (!subStrings[2].matches(noDigits)){
+                    throw new InputParseException("некорректный формат ОТЧЕСТВА");
+                }
+                if (!subStrings[3].matches(onlyDigits)){
+                    throw new InputParseException("некорректный формат НОМЕРА ТЕЛЕФОНА");
+                }
+                
+                return subStrings;
             }
-            catch (Exception e){
-                System.out.println(e.getLocalizedMessage());
+            catch (InputStructureException | InputParseException  e){
+                System.out.println(e.getLocalizedMessage());}
+            catch (NoSuchElementException e) {
+                System.out.println("Ну отказался так отказался :)");
+            }
             }
             
         }
         
         }
+    
