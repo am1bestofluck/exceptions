@@ -1,5 +1,6 @@
 package dz3;
 
+import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -22,9 +23,7 @@ import org.json.simple.JSONObject; // https://stackoverflow.com/questions/502325
  * 
  * 4. делаем из строки json
  *
- * 5. отдаём json в zip-editor # не отдаём ничего никуда. Впереди ад
- * "контейнеризации", нужно
- * с этим быстренько разобраться.
+ * 5. перезаписываем файл
  */
 
 public class core {
@@ -34,7 +33,10 @@ public class core {
         String[] validString = core.repl();
         System.out.println(validString);
         json_editor jse = new json_editor(validString);
-        jse.getFile();
+        try {jse.roll();}
+        catch (IOException e){
+            e.getLocalizedMessage();
+        }
     }
 
     public static String[] repl() {
